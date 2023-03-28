@@ -1,6 +1,6 @@
 
 variable "gke_num_nodes" {
-  default     = 2
+  default     = 1
   description = "number of gke nodes"
 }
 
@@ -21,5 +21,9 @@ variable "app" {
 variable "docker-image" {
   type        = string
   description = "name of the docker image to deploy"
-  default     = "us-central1-docker.pkg.dev/apt1nyzpdoix7wqzvf4x9rxsmlx1wb/my-docker-repo/mms-front:latest"
+  default     = "us-central1-docker.pkg.dev/apt1nyzpdoix7wqzvf4x9rxsmlx1wb/my-docker-repo/mms-front"
+}
+
+variable "account_id" {
+
 }

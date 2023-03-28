@@ -1,3 +1,8 @@
+resource "google_service_account" "default" {
+  account_id   = var.account_id
+  display_name = "Service Account"
+}
+
 resource "google_container_cluster" "primary" {
   name     = var.gke_name
   location = var.region
@@ -29,6 +34,8 @@ resource "google_container_node_pool" "primary_nodes" {
       env = var.project_id
     }
 
+    service_account = google_service_account.default.email
+
     # preemptible  = true
     machine_type = "n1-standard-1"
     tags         = ["gke-node", "${var.project_id}-gke"]
@@ -42,4 +49,7 @@ resource "kubernetes_namespace" "frontend" {
   metadata {
     name = "frontend"
   }
+   depends_on = [
+    google_container_cluster.primary
+  ]
 }

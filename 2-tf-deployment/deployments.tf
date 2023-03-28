@@ -32,4 +32,7 @@ resource "kubernetes_deployment" "app" {
       }
     }
   }
+  depends_on = [
+    google_container_cluster.primary
+  ]
 }
